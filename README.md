@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Star Wars Movie Catalog
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A small React app that lists the Star Wars films from [SWAPI](https://swapi.dev/)
+and lets you expand each film to browse its characters.
 
-## Available Scripts
+Built with [Vite](https://vite.dev/) and [Vitest](https://vitest.dev/).
 
-In the project directory, you can run:
+## Requirements
 
-### `npm start`
+- Node.js 20.19+ or 22.12+ (required by Vite 8)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm install
+npm start
+```
 
-### `npm test`
+The dev server runs on [http://localhost:3000](http://localhost:3000) and
+hot-reloads as you edit.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Available scripts
 
-### `npm run build`
+| Script | Description |
+| --- | --- |
+| `npm start` / `npm run dev` | Start the Vite dev server on port 3000. |
+| `npm run build` | Build the production bundle into `build/`. |
+| `npm run preview` | Serve the built bundle locally to verify a production build. |
+| `npm test` | Run the test suite once. |
+| `npm run test:watch` | Run the tests in watch mode. |
+| `npm run lint` | Lint the project with ESLint. |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project layout
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+index.html              Vite entry point
+public/                 Static files copied verbatim into the build
+src/main.jsx            App bootstrap
+src/App.jsx             Film list and search
+src/components/         MovieCard and Character
+vite.config.js          Vite + Vitest configuration
+eslint.config.js        ESLint flat config
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Notes on the toolchain
 
-### `npm run eject`
+This project previously used Create React App (`react-scripts`). CRA is no longer
+maintained and its dependency tree was the source of essentially every dependency
+vulnerability reported against this repo. It has been replaced with Vite, which
+covers the same ground (dev server, JSX, CSS and asset handling, production
+build) with a far smaller and actively maintained dependency tree.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Tests moved from Jest to Vitest. The testing-library APIs are unchanged; the
+main difference is that test files import `vi` from `vitest` instead of using
+Jest's global `jest` object.
